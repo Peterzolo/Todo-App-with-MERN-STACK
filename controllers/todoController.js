@@ -5,8 +5,16 @@ const Joi = require('joi');
 
 
 
-exports.getTodo = (req, res) =>{
-    res.send('Get Request is working')
+
+exports.getTodo = async(req, res) =>{
+
+    try {
+        const allTodos = await Todo.find().sort({date : -1})
+        res.send(allTodos);
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+
 };
 
 exports.postTodu = async(req, res) =>{
@@ -36,15 +44,22 @@ exports.postTodu = async(req, res) =>{
         isComplete,
         date,
         } 
-    );
+    );  
     try {
         todo = await todo.save()
        
-        res.send(todo)
+        res.send(todo)   
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
+
+exports.deleteTodo = async(req, res) =>{
+
+    const deletedItem = await Todo.findByIdAndDelete(req.params.id);
+    res.send(deletedItem);     
+    
+}
 
 
 
