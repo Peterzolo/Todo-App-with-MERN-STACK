@@ -7,10 +7,10 @@ require('dotenv').config();
 
 const todoRouter = require('./routes/todoRoute')  
 
-app.use(cors());
+app.use(cors());   
 app.use(express.json());
 
-
+    
 const port =  5000
     
 app.use('/api/todos/', todoRouter);  
