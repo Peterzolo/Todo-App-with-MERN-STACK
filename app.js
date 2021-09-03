@@ -6,6 +6,8 @@ const cors = require('cors');
 require('dotenv').config();
 
 const todoRouter = require('./routes/todoRoute')  
+const userSignUpRouter = require('./routes/users/userSignUp');
+const userSignInRouter = require('./routes/users/userSignIn')
 
 app.use(cors());   
 app.use(express.json());
@@ -14,6 +16,8 @@ app.use(express.json());
 const port =  5000
     
 app.use('/api/todos/', todoRouter);  
+app.use('/api/signup/', userSignUpRouter);  
+app.use('/api/signin/', userSignInRouter);
 
 const mongoDb_connect = process.env.MONGODB_CONNECTION
 
