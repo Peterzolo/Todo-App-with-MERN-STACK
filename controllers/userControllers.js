@@ -31,7 +31,7 @@ exports.userSignUp = async(req, res) =>{
   try {
 
     let user = await User.findOne({email : req.body.email})
-    console.log(req.body)
+   
     if(user) return res.status(400).send("This email has already been used")
 
     const {name, email, password} = req.body
